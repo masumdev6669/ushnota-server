@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { connectDB } from "./config/db";
+import eventRoutes from "./routes/events";
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -12,6 +13,8 @@ app.use(express.json());
 app.get("/", (_req, res) => {
   res.json({ message: "Ushnota API is running" });
 });
+
+app.use("/api/events", eventRoutes);
 
 connectDB()
   .then(() => {
