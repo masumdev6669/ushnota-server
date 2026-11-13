@@ -4,6 +4,7 @@ import cors from "cors";
 import { connectDB } from "./config/db";
 import eventRoutes from "./routes/events";
 import joinRoutes from "./routes/joins";
+import authRoutes from "./routes/auth";
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -18,6 +19,7 @@ app.get("/", (_req, res) => {
   res.json({ message: "Ushnota API is running" });
 });
 
+app.use("/api/auth", authRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/joins", joinRoutes);
 
